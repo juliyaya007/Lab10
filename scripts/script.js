@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // Instantiate the SDK. CDN will expose splitio globally 
 var factory = splitio({ 
   core: {
-    authorizationKey: 'YOUR_API_KEY',
+    authorizationKey: 'kgbi1ccdefqdlesdpdfreub73j8mfd80pj0t',//prod client side
     // your internal user id, or the account id that 
     // the user belongs to. 
     // This coudld also be a cookie you generate
     // for anonymous users
-    key: 'kgbi1ccdefqdlesdpdfreub73j8mfd80pj0t',//prod client side
+    key: 'key',
     // an OPTIONAL traffic type, if provided will be
     // used for event tracking with the SDK client.
     trafficType: 'A_TRAFFIC_TYPE'
