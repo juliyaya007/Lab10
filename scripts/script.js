@@ -42,10 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-
-
-
 // Instantiate the SDK. CDN will expose splitio globally 
 var factory = splitio({ 
   core: {
@@ -54,7 +50,7 @@ var factory = splitio({
     // the user belongs to. 
     // This coudld also be a cookie you generate
     // for anonymous users
-    key: 'key',
+    key: 'kgbi1ccdefqdlesdpdfreub73j8mfd80pj0t',//prod client side
     // an OPTIONAL traffic type, if provided will be
     // used for event tracking with the SDK client.
     trafficType: 'A_TRAFFIC_TYPE'
@@ -80,21 +76,25 @@ client.on(client.Event.SDK_READY, function() {
   var treatment = client.getTreatment('SPLIT_NAME', attributes);
   if (treatment == "on") {
       // insert code here to show on treatment
+      var v = document.getElementsByTagName('main')[0]
+      v.className = "double-column";
   } else if (treatment == "off") {
       // insert code here to show off treatment
+      var a = document.getElementsByTagName('main')[0]
+      a.className -= "double-column";
   } else {
       // insert your control treatment code here
   }
 });
 
 
-// You can just destroy and remove the variable reference and move on:
-user_client.destroy();
-user_client = null;
-// destroy() returns a promise, so if you want to, for example,
-// navigate to another page without loosing impressions, you 
-// can do that once the promise resolves.
-user_client.destroy().then(function() {
-     user_client = null;
-  document.location.replace('another_page');
-});
+// // You can just destroy and remove the variable reference and move on:
+// client.destroy();
+// client = null;
+// // destroy() returns a promise, so if you want to, for example,
+// // navigate to another page without loosing impressions, you 
+// // can do that once the promise resolves.
+// client.destroy().then(function() {
+//      client = null;
+//   document.location.replace('another_page');
+// });
