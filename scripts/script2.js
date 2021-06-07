@@ -87,15 +87,15 @@ client.on(client.Event.SDK_READY, function() {
   // console.log(treatments);
   // var treatment_one = treatments.doubleColumn;
   // var treatment_two = treatments.secondSplit;
-  var treatment_one = client.getTreatment('doubleColumn', attributes);//SPLIT_NAME
+  var treatment_one = client.getTreatment('secondSplit', attributes);//SPLIT_NAME
   if (treatment_one == "on") {
       // insert code here to show on treatment
-      var v = document.getElementsByTagName('main')[0]
-      v.className = "double-column";
+      var v = document.getElementsByTagName('h1')[0]
+      v.innerHTML = "Journal Entries";
   } else if (treatment_one == "off") {
       // insert code here to show off treatment
-      var a = document.getElementsByTagName('main')[0]
-      a.className = "";
+      var a = document.getElementsByTagName('h1')[0]
+      a.innerHTML = "";
   } else {
       // insert your control treatment code here
   }
