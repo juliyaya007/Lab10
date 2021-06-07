@@ -42,6 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function getRandomString(length) {
+  var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var result = '';
+  for ( var i = 0; i < length; i++ ) {
+      result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+  }
+  return result;
+}
+var rand = getRandomString(36);
 // Instantiate the SDK. CDN will expose splitio globally 
 var factory = splitio({ 
   core: {
@@ -50,7 +59,7 @@ var factory = splitio({
     // the user belongs to. 
     // This coudld also be a cookie you generate
     // for anonymous users
-    key: 'key',
+    key: rand,
     // an OPTIONAL traffic type, if provided will be
     // used for event tracking with the SDK client.
     trafficType: 'A_TRAFFIC_TYPE'
@@ -73,15 +82,35 @@ client.on(client.Event.SDK_READY, function() {
     permissions: ["read", "write"]
   };
   
-  var treatment = client.getTreatment('SPLIT_NAME', attributes);
-  if (treatment == "on") {
+var splitNames = ['doubleColumn', 'secondSplit'];
+  var treatments = client.getTreatments(splitNames);
+  // console.log(treatments);
+  var treatment_one = treatments.doubleColumn;
+  var treatment_two = treatments.secondSplit;
+  // var treatment_one = client.getTreatment('doubleColumn', attributes);//SPLIT_NAME
+  if (treatment_one == "on") {
       // insert code here to show on treatment
       var v = document.getElementsByTagName('main')[0]
       v.className = "double-column";
-  } else if (treatment == "off") {
+  } else if (treatment_one == "off") {
       // insert code here to show off treatment
       var a = document.getElementsByTagName('main')[0]
-      a.className -= "double-column";
+      a.className = "";
+  } else {
+      // insert your control treatment code here
+  }
+
+
+//second split
+  // var treatment_two = client.getTreatment('secondSplit', attributes);//SPLIT_NAME
+  if (treatment_two == "on") {
+      // insert code here to show on treatment
+      var v2 = document.getElementsByTagName('h1')[0];
+      v2.innerHTML = "Journal Entries";
+  } else if (treatment_two == "off") {
+      // insert code here to show off treatment
+      var a2 = document.getElementsByTagName('h1')[0];
+      a2.innerHTML = "";
   } else {
       // insert your control treatment code here
   }
